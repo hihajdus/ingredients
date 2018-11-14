@@ -6,7 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'aplication';
 
+  get getAge() {
+    return (new Date().getFullYear()) - this.person.birthdate
+  }
 
+  person = {
+    name : 'Karolina' ,
+    birthdate : 1988 ,
+    company:{
+      name : 'hi!hajdus'
+    }
+  }
 }
