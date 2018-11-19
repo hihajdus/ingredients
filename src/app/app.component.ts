@@ -11,12 +11,19 @@ export class AppComponent {
   get getAge() {
     return (new Date().getFullYear()) - this.person.birthdate
   }
-
   person = {
     name : 'Karolina' ,
     birthdate : 1988 ,
     company:{
       name : 'hi!hajdus'
     }
+  }
+
+  counter = 0;
+
+  constructor() {
+    setInterval(()=>{
+      this.counter++;
+    },500)
   }
 }

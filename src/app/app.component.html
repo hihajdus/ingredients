@@ -1,12 +1,18 @@
   <div class="container">
-    <div style="text-align:center">
-      <h1>
-        list {{ title }}!
-      </h1>
-        {{ person.name }}
-      <h2> company </h2>
-      {{ person.company.name }}
-      wiek : {{ getAge }}
+    <div class="row">
+      <div class="col-6"></div>
+      <div class="col-6"></div>
     </div>
-    <h4>test git konlikt</h4>
+    <div class="row" style="text-align:center">
+      <div class="col">
+        <h1>list {{ title }}! {{ person.name }}</h1>
+      </div>
+      <div class="col">
+          <h2> company </h2> {{ person.company.name }} wiek : {{ getAge }}
+      </div>
+      <div class="col">
+          <h4>test git konlikt</h4>
+          <h3>{{counter}}</h3>
+      </div>
+    </div>
   </div>
