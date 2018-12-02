@@ -1,9 +1,10 @@
+  <style>
+    .playlist-row {
+      border-bottom: 4px solid transparent;
+    }
+  </style>
   <div class="container">
-    <div class="row">
-      <div class="col-6"></div>
-      <div class="col-6"></div>
-    </div>
-    <div class="row" style="text-align:center">
+    <!-- <div class="row" style="text-align:center">
       <div class="col">
         <h1>list {{ title }}! {{ person.name }}</h1>
       </div>
@@ -14,5 +15,72 @@
           <h4>test git konlikt</h4>
           <h3>{{counter}}</h3>
       </div>
+    </div> -->
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+          <!-- [style.fontSize.px]=" size " -->
+          <!-- [ngClass]="getClasses()"  -->
+        <tr [ngClass]="{'table-active' : selected == playlist, 'playlist-row' : true}"
+        [ngStyle]="getPlaylistStyle(playlist)"
+        (click)="selected = playlist" >
+          <th scope="row">1</th> 
+          <td>{{playlist.name}}</td>
+          <td>Mark</td>
+          <td>
+            <input type="checkbox" [(ngModel)]="playlist.favourite">
+          </td>
+        </tr>
+        <tr [ngClass]="{'table-active' : selected == playlist, 'playlist-row' : null}" 
+        (click)="selected = null" 
+        [class.table-active]="selected == null" >
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Playlista</h5>
+        <p class="card-text">Opis playlisty</p>
+        <a href="pdf" class="btn btn-primary">Go somewhere</a>
+      </div>
+      <ng-template [ngIf]="selected != null">
+        <div class="card-body">
+          <div class="form-group">
+            <label for="colFormLabel">Name:</label>
+            <input class="form-control" type="text" [(ngModel)]="selected.name">
+          </div>
+          <div class="form-group">
+            <label for="colFormLabel">Tracks:</label>
+            <input type="number" [value]="selected.tracks +' utworów'" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="colFormLabel">Color:</label>
+            <input type="color" 
+            [(ngModel)]="selected.color">
+          </div>
+          <div class="form-group">
+              <label for="colFormLabel">Font Size:</label>
+              <input type="number">
+            </div>        
+          <div class="form-group">
+            <label for="colFormLabel">Favourite</label> 
+            <input type="checkbox" [(ngModel)]="selected.favourite">
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-outline-success float-right" (click)="onSave($event)">Success</button>                           
+          </div>
+        </div>
+      </ng-template>
     </div>
   </div>

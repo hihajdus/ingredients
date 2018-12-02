@@ -1,0 +1,6 @@
+.card-body {
+    /* margin: 20px 0; */
+}
+a[href$="pdf" i] {
+    color: red;
+}
