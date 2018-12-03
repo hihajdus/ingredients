@@ -30,7 +30,7 @@
           <!-- [ngClass]="getClasses()"  -->
         <tr [ngClass]="{'table-active' : selected == playlist, 'playlist-row' : true}"
         [ngStyle]="getPlaylistStyle(playlist)"
-        (click)="selected = playlist" >
+        (click)="select(playlist)" >
           <th scope="row">1</th> 
           <td>{{playlist.name}}</td>
           <td>Mark</td>
@@ -39,7 +39,7 @@
           </td>
         </tr>
         <tr [ngClass]="{'table-active' : selected == playlist, 'playlist-row' : null}" 
-        (click)="selected = null" 
+        (click)="selected(null)" 
         [class.table-active]="selected == null" >
           <th scope="row">2</th>
           <td>Jacob</td>
@@ -50,11 +50,35 @@
     </table>
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Playlista</h5>
-        <p class="card-text">Opis playlisty</p>
-        <a href="pdf" class="btn btn-primary">Go somewhere</a>
+        <div class="form-group">
+          <button type="button" class="btn btn-outline-success float-right" (click)="creatNew($event)">Nowa playlista</button>                           
+        </div>  
       </div>
-      <ng-template [ngIf]="selected != null">
+    </div>  
+
+<div [ngSwitch]="mode">
+    <div class="card" *ngSwitchDefault >
+        <div class="card-body">
+          <h5 class="card-title">Playlista</h5>
+          <p class="card-text">Wybierz playlistę</p>
+          <a href="pdf" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+      <div class="card" *ngSwitchCase="'selected'" >
+          <div class="card-body">
+            <h5 class="card-title">playlista "{{playlist.name}}"</h5>
+            <p class="card-text">Wybrana playlista</p>
+            <div class="form-group">
+                <button type="button" class="btn btn-default float-right" (click)="edit(playlist)">Edytuj</button>                           
+              </div> 
+          </div>   
+      </div>
+  
+      <div class="card" *ngSwitchCase="'edit'">
+        <div class="card-body">
+          <h5 class="card-title">Playlista</h5>
+          <p class="card-text">Opis playlisty</p>
+        </div> 
         <div class="card-body">
           <div class="form-group">
             <label for="colFormLabel">Name:</label>
@@ -81,6 +105,8 @@
             <button type="button" class="btn btn-outline-success float-right" (click)="onSave($event)">Success</button>                           
           </div>
         </div>
-      </ng-template>
-    </div>
+      </div>
+  </div>
+
+
   </div>

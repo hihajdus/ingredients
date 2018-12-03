@@ -9,6 +9,12 @@ export class AppComponent {
 
   selected = null;
 
+  edited = {
+   name: " ",
+  }
+
+  mode="none"
+
   playlist = {
     name : "new list",
     tracks : 24,
@@ -25,19 +31,30 @@ export class AppComponent {
     }
   };
 
-
-
-
-
-
-
   // getClasses() {
   //   return {
   //     table-active : selected == playlist,
   //     playlist-row : true
   //   }
   // };
+select(playlist) {
+  this.mode = "selected";
+  this.selected = playlist;
+}
 
+edit(playlist) {
+  this.mode = "edit";
+  this.edited = playlist;
+  this.selected = playlist;
+}
+
+  creatNew(event){
+    this.mode = "edit";
+    var newPlaylist = {};
+    this.selected = newPlaylist;
+    this.edited = newPlaylist;
+    console.log('nowa playlista', event);
+  }
 
   onSave(event){
     console.log('zapisano', event);
